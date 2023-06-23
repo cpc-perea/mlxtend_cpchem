@@ -780,7 +780,7 @@ class SequentialFeatureSelector(_BaseXComposition, MetaEstimatorMixin):
             )
 
             work = parallel(
-               (
+               delayed(_calc_score)(
                     self,
                     X,
                     y,
