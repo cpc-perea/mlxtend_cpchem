@@ -336,6 +336,7 @@ class SequentialFeatureSelector(_BaseXComposition, MetaEstimatorMixin):
         self.k_feature_idx_ = None
         self.k_feature_names_ = None
         self.k_score_ = None
+        print('Running new code')
 
         X_, self.feature_names = _preprocess(X)
         self.n_features = X_.shape[1]
@@ -777,8 +778,10 @@ class SequentialFeatureSelector(_BaseXComposition, MetaEstimatorMixin):
             parallel = Parallel(
                 n_jobs=n_jobs, verbose=self.verbose, pre_dispatch=self.pre_dispatch
             )
+
             work = parallel(
-                delayed(_calc_score)(
+                print("this has been changed")
+                (_calc_score)(  #delayed(_calc_score)(
                     self,
                     X,
                     y,
@@ -821,6 +824,7 @@ class SequentialFeatureSelector(_BaseXComposition, MetaEstimatorMixin):
 
         """
         self._check_fitted()
+        print('running new code')
         X_, _ = _preprocess(X)
         return X_[:, self.k_feature_idx_]
 
