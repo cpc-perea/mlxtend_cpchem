@@ -774,14 +774,13 @@ class SequentialFeatureSelector(_BaseXComposition, MetaEstimatorMixin):
             else:
                 feature_explorer = combinations(remaining, r=n - 1)
 
-            n_jobs = min(self.n_jobs, n)
+            n_jobs = self.n_jobs
             parallel = Parallel(
                 n_jobs=n_jobs, verbose=self.verbose, pre_dispatch=self.pre_dispatch
             )
 
             work = parallel(
-                print("this has been changed")
-                (_calc_score)(  #delayed(_calc_score)(
+               (
                     self,
                     X,
                     y,
